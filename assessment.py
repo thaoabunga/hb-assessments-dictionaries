@@ -184,11 +184,12 @@ def kids_game(names):
     a dictionary (with the super-fast lookup they provide) can help;
     good solutions here will definitely require a dictionary.
     """
+    # get first word and remove from list; add to results
 
     possible_letter_to_words = {}
 
     results = [names.pop(0)]
-
+    # make a dictionary of of first letter: [words-starting with that]
     for name in names:
         if name[0] not in possible_letter_to_words:
 
@@ -196,7 +197,8 @@ def kids_game(names):
             possible_letter_to_words[name[0].append(name)] #creating a dictionary of possible letters 
 
     while True: #create markov chain
-        
+
+        #starting letter is the last letter of last word
         start_letter = output[-1][-1]
 
         if not possible_letter_to_words(start_letter):
