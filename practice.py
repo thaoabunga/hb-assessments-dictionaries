@@ -104,13 +104,15 @@ def get_sum_zero_pairs(numbers):
         >>> sort_pairs( get_sum_zero_pairs([1, 3, -1, 1, 1, 0]) )
         [[-1, 1], [0, 0]]
     """
-    num_result = [] #empty list for appending pairs
+    result = []
 
-    for num1 in range(len(numbers)): #for the first number in the pair, loop through numbers in the list numbers
-        for num2 in range(num1 + 1, len(numbers)): #for the second number, loop through numbers list until the end of the list
-            num_result.append([numbers[num1], numbers[num2]]) #append the number pair to the empty list
-        
-        return list(set(num_result)) #confused with zero sum pair request. find abs zero?
+    s = set(numbers)
+
+    for x in s:
+        if x >= 0 and -x in s:
+            result.append([-x, x])
+
+    return result
 
 
 
@@ -142,12 +144,26 @@ def top_chars(phrase):
     Do not count spaces, but count all other characters.
 
     """
-    chars_count = {} #empty dictionary to append chars to
+    tallies = {}
+    most_common_count = 0
 
-    for letter in phrase: #looping through each char in phrase list
-        chars_count[letter] = chars_count.get(letter, 0) + 1 #counting the letters
-        if chars_count
-    return sorted(chars_count)
+    for letter in phrase:
+
+        if letter == ' ':
+            continue
+
+        tallies[letter] = tallies.get(letter, 0) + 1
+
+        if tallies[letter] > most_common_count:
+            most_common_count = tallies[letter]
+
+    most_common = []
+
+    for letter, count in tallies.items():
+        if count == most_common_count:
+            most_common.append(letter)
+
+    return sorted(most_common)
 
 #####################################################################
 # You can ignore everything below this.
